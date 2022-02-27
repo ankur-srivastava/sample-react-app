@@ -1,9 +1,17 @@
 import ExpenseForm from './ExpenseForm'
 import './NewExpense.css'
 
-const NewExpense = () => {
+const NewExpense = (props) => {
+    const postSaveExpense = (enteredExpenseData) => {
+        const expenseData = {
+            ...enteredExpenseData,
+            id: Math.random().toString()
+        }
+        // console.log(`In New Expense and expenseData = ${JSON.stringify(expenseData)}`)
+        props.onExpenseSave(expenseData)
+    }
     return <div className="new-expense">
-        <ExpenseForm />
+        <ExpenseForm onSaveExpenseData={postSaveExpense}/>
     </div>
 }
 

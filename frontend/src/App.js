@@ -26,9 +26,15 @@ const App = () => {
             date: new Date()
         },
     ];
+
+    const updateExpenses = (expense) => {
+        expenses.push(expense)
+        console.log(`In App and expenses = ${JSON.stringify(expenses)}`)
+    }
+
     return (
         <div>
-            <NewExpense />
+            <NewExpense onExpenseSave={updateExpenses}/>
             <Expenses expenses={expenses}/>
         </div>
     );
