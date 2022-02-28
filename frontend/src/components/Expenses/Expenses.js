@@ -12,7 +12,11 @@ const Expenses = ({expenses}) => {
         <div className="expenses">
             <ExpenseFilter selected={filterValue} onFilterChange={applyFilter} />
             {expenses.map((expense)=>(
-                <ExpenseItem title={expense.title} date={expense.date} amount={expense.amount}></ExpenseItem>    
+                <ExpenseItem
+                    id={expense.id}
+                    title={expense.title} 
+                    date={expense.date} 
+                    amount={expense.amount} />
             ))}
         </div>
     </div>
