@@ -1,6 +1,6 @@
-import ExpenseItem from "./ExpenseItem"
 import ExpenseFilter from './ExpenseFilter';
 import { useState } from "react";
+import ExpenseList from "./ExpenseList";
 
 const Expenses = ({expenses}) => {
     const [filterValue, setFilterValue] = useState('2022')
@@ -8,16 +8,15 @@ const Expenses = ({expenses}) => {
     const applyFilter = (value) => {
         setFilterValue(value)
     }
+
+    const filteredExpenses = expenses.filter((expense) => {
+        return expense.date.getFullYear().toString() === filterValue
+    })
+
     return <div>
         <div className="expenses">
             <ExpenseFilter selected={filterValue} onFilterChange={applyFilter} />
-            {expenses.map((expense)=>(
-                <ExpenseItem
-                    id={expense.id}
-                    title={expense.title} 
-                    date={expense.date} 
-                    amount={expense.amount} />
-            ))}
+            <ExpenseList expenses={filteredExpenses} />
         </div>
     </div>
 }
